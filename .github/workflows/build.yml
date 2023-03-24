@@ -50,4 +50,3 @@ jobs:
           name: javadoc
           path: target/site/apidocs/
 
-      
