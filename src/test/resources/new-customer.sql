@@ -1,0 +1,1 @@
+insert into customer (customer_id,title,firstname,lastname,email,address,zipcode) values ('123456','Mrs','Marie','Curie','marie.curie@email.org','1 rue de la Science, Paris','74190')

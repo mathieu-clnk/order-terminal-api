@@ -1,0 +1,25 @@
+spring:
+  #main:
+  #  web-application-type: none
+  jpa:
+    database: H2
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    datasource:
+      platform: postgres
+      url: jdbc:h2:mem:testdb
+      username: sa
+      password: password
+      driverClassName: org.hibernate.dialect.H2Dialect
+
+endpoints:
+  customer: "http://127.0.0.1:8081"
+  customer_version: "v1"
+
+#local:
+#  server:
+#    port: 8090

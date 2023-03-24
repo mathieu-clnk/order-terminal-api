@@ -1,0 +1,19 @@
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: root
+    password: password
+    driverClassName: org.postgresql.Driver
+
+endpoints:
+  customer: "https://customer.samples.kamvity.com"
+  customer_version: "v1"
