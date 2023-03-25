@@ -19,25 +19,43 @@ import java.util.List;
 @Table(name="order_terminal")
 public class OrderTerminal {
 
+    /**
+     * Identifier of the order.
+     */
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long orderId;
 
+    /**
+     * Total price of the order.
+     */
     @Column(nullable = false)
     private Double price;
 
+    /**
+     * When the order has been submitted.
+     */
     @Column(nullable = false)
     private Timestamp orderTimestamp;
 
+    /**
+     * Terminals ordered in this order.
+     */
     @OneToMany(fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Terminal> terminals;
 
+    /**
+     * Customer who has placed the order.
+     */
     //@OneToOne
     //@JoinColumn(name="customerId",nullable = false)
     @Column(nullable = false)
     private Long customerId;
 
+    /**
+     * The customer's email.
+     */
     @Column(nullable = false)
     private String customerEmail;
 }

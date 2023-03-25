@@ -7,7 +7,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 /**
  * @author Mathieu Coavoux
- * @description Boot Order terminal api
  */
 @SpringBootApplication
 public class OrderTerminalApplication {

@@ -74,6 +74,14 @@
                 </executions>
             </plugin>
             <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.5.0</version>
+            <configuration>
+                <excludePackageNames>com.kamvity.samples.cm</excludePackageNames>
+            </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>6.4.0</version>
@@ -104,15 +112,6 @@
                                 <documentationProvider>none</documentationProvider>
                                 <library>spring-boot</library>
                             </configOptions>
-                            <!-- <language>java</language>
-                            <apiPackage>com.kamvity.samples.om.controller.CustomerController</apiPackage>
-                            <modelPackage>com.kamvity.samples.om.entity.Customer</modelPackage>
-                            <generateModels>true</generateModels>
-                            <generateApis>true</generateApis>
-                            <generateApiTests>false</generateApiTests>
-                            <generateModelDocumentation>false</generateModelDocumentation>
-                            <generateApiDocumentation>false</generateApiDocumentation>
-                            <output>./target/generated-sources/java</output> -->
                         </configuration>
                     </execution>
                 </executions>

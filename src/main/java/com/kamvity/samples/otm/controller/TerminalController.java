@@ -7,6 +7,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Terminal equipment.
+ */
 @RestController
 @RequestMapping("/v1/terminal")
 public class TerminalController {
@@ -14,11 +17,21 @@ public class TerminalController {
     @Autowired
     private TerminalService terminalService;
 
+    /**
+     * Get the terminal by id.
+     * @param id: The unique identifier of the terminal.
+     * @return the terminal
+     */
     @GetMapping("/get-by-id")
     public ResponseEntity<Terminal> getTerminalById(@RequestParam Long id) {
         return terminalService.getTerminalById(id);
     }
 
+    /**
+     * Insert a new terminal.
+     * @param terminal: The terminal information.
+     * @return the terminal inserted.
+     */
     @PostMapping(path = "/create-terminal",
                 consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
