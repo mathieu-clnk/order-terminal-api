@@ -16,6 +16,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Order terminal controller.
  */
@@ -69,7 +71,15 @@ public class OrderTerminalController {
     @GetMapping(path="/create-order",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderTerminal> createOrder(@JsonProperty String customerId, @JsonProperty String[] terminalIds) {
+    public ResponseEntity<OrderTerminal> createOrder(
+            @Parameter(name = "orderId",schema = @Schema(
+                    implementation = String.class,
+                    example = "888888"
+            ))@JsonProperty String customerId,
+            @Parameter(name = "orderId",schema = @Schema(
+            implementation = List.class,
+            example = "[ \"12345\", \"993223\" ]"
+            ))@JsonProperty String[] terminalIds) {
         return orderTerminalService.createOrder(customerId,terminalIds);
 
     }
