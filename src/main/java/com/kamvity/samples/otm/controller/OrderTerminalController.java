@@ -56,7 +56,7 @@ public class OrderTerminalController {
                     implementation = OrderTerminal.class,
                     example = "888888"
             ))
-            @RequestParam(required = true,name = "orderId") Long orderId) {
+            @RequestParam Long orderId) {
         return orderTerminalService.getOrderTerminalBy(orderId);
     }
 
