@@ -74,12 +74,12 @@
                 </executions>
             </plugin>
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>3.5.0</version>
-            <configuration>
-                <excludePackageNames>com.kamvity.samples.cm</excludePackageNames>
-            </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <excludePackageNames>com.kamvity.samples.cm</excludePackageNames>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.openapitools</groupId>

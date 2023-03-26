@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name="order_terminal")
-@Schema(name = "orderTerminal", description = "Order of terminals")
+@Schema(name = "OrderTerminal", description = "Order of terminals")
 public class OrderTerminal {
 
     /**
