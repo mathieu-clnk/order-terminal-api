@@ -1,7 +1,7 @@
 package com.kamvity.samples.otm.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kamvity.samples.cm.entity.Customer;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name="order_terminal")
+@Schema(name = "orderTerminal", description = "Order of terminals")
 public class OrderTerminal {
 
     /**
@@ -24,6 +25,7 @@ public class OrderTerminal {
      */
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Schema(name = "orderId",requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     private Long orderId;
 
     /**
@@ -43,6 +45,7 @@ public class OrderTerminal {
      */
     @OneToMany(fetch = FetchType.LAZY)
     @JsonIgnore
+    @Schema(name = "terminals",description = "List of terminal IDs.",requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     private List<Terminal> terminals;
 
     /**
@@ -57,5 +60,6 @@ public class OrderTerminal {
      * The customer's email.
      */
     @Column(nullable = false)
+    @Schema(name = "customerEmail",pattern = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",requiredMode = Schema.RequiredMode.REQUIRED)
     private String customerEmail;
 }

@@ -50,3 +50,33 @@ jobs:
           name: javadoc
           path: target/site/apidocs/
 
+
+      - name: Publish to SwaggerHub (if needed)
+        run: |
+          die() {
+            echo -e "\e[0;31mERROR: $1 \e[0m"
+            exit 1
+          }
+          update_new() {
+            echo "Update new version"
+            version=$(cat swagger.json|json "info.version")
+            result=$(swaggerhub api:get MATHIEUKAMVITY/order-terminal-api/$version 2> /dev/null || echo "Not found")
+            if [ "$result" == "Not found" ]
+            then
+              echo "Create a new version ${version}"
+              swaggerhub api:create MATHIEUKAMVITY/order-terminal-api/$version -f swagger.json || die "Cannot create the version"
+            else
+              echo "Update the existing version ${version}"
+              swaggerhub api:update MATHIEUKAMVITY/order-terminal-api/$version -f swagger.json || die "Cannot create the version"
+            fi
+            echo "Publish the version"
+            swaggerhub api:publish MATHIEUKAMVITY/order-terminal-api/$version || die "Cannot publish the version"
+          }
+          npm i -g swaggerhub-cli
+          npm install -g json-diff
+          npm install -g json
+          export SWAGGERHUB_API_KEY=${{ secrets.SWAGGERHUB_API_KEY }}
+          [ -f swagger.json ] || die "swagger.json not found."
+          swaggerhub api:get MATHIEUKAMVITY/order-terminal-api -j > published-swagger.json || die "Swagger hub has returned an error"
+          json-diff published-swagger.json swagger.json && echo "Same version of OpenApi" || update_new
+

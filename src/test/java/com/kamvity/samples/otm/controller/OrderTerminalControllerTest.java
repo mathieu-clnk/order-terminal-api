@@ -2,6 +2,7 @@ package com.kamvity.samples.otm.controller;
 
 import com.kamvity.samples.otm.config.OrderTerminalConfig;
 import com.kamvity.samples.otm.entity.OrderTerminal;
+import com.kamvity.samples.otm.service.CustomerService;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,6 +35,8 @@ public class OrderTerminalControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    @Autowired
+    CustomerService customerService;
 
     @Test
     @Sql("/new-order-terminal.sql")

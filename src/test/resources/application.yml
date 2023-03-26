@@ -1,3 +1,6 @@
+openapi:
+  version: v0
+
 spring:
   #main:
   #  web-application-type: none
