@@ -60,6 +60,6 @@ public class OrderTerminal {
      * The customer's email.
      */
     @Column(nullable = false)
-    @Schema(name = "customerEmail",pattern = "^[A-Za-z0-9\\-_\\.]{1,99}@[A-Za-z0-9]{2,40}\\.[A-Za-z0-9]{2,4}$",requiredMode = Schema.RequiredMode.REQUIRED)
+    @Schema(name = "customerEmail",example = "marie.curie@email.org", pattern = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",requiredMode = Schema.RequiredMode.REQUIRED)
     private String customerEmail;
 }
