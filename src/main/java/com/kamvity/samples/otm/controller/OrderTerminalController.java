@@ -53,7 +53,7 @@ public class OrderTerminalController {
     })
     public ResponseEntity<OrderTerminal> getOrderTerminalBy(
             @Parameter(name = "orderId",schema = @Schema(
-                    implementation = OrderTerminal.class,
+                    implementation = String.class,
                     example = "888888"
             ))
             @RequestParam Long orderId) {
