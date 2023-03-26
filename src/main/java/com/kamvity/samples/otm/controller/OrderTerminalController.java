@@ -5,6 +5,7 @@ import com.kamvity.samples.otm.entity.OrderTerminal;
 import com.kamvity.samples.otm.service.OrderTerminalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -71,15 +72,20 @@ public class OrderTerminalController {
     @GetMapping(path="/create-order",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderTerminal> createOrder(
-            @Parameter(name = "orderId",schema = @Schema(
+    @Parameters(value = {
+            @Parameter(name = "orderId", schema = @Schema(
                     implementation = String.class,
                     example = "888888"
-            ))@JsonProperty String customerId,
-            @Parameter(name = "orderId",schema = @Schema(
-            implementation = List.class,
-            example = "[ \"12345\", \"993223\" ]"
-            ))@JsonProperty String[] terminalIds) {
+            )),
+            @Parameter(name = "orderId", schema = @Schema(
+                    implementation = List.class,
+                    example = "[ \"12345\", \"993223\" ]"
+            ))
+
+    })
+    public ResponseEntity<OrderTerminal> createOrder(
+            @JsonProperty String customerId,
+            @JsonProperty String[] terminalIds) {
         return orderTerminalService.createOrder(customerId,terminalIds);
 
     }
