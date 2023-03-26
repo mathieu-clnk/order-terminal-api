@@ -40,7 +40,8 @@ public class OrderTerminalController {
     @Operation(summary = "Get order by id.", description = "Get an order of terminals by its identifier.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",description = "Get an order by its identifier", content = @Content(
-                schema = @Schema(ref = "#/components/schemas/OrderTerminal"),
+                    mediaType = "application/json",
+                    schema = @Schema(ref = "#/components/schemas/OrderTerminal"),
                     examples = @ExampleObject(
                             name = "Success response",
                             value = "{"+
@@ -73,15 +74,33 @@ public class OrderTerminalController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Parameters(value = {
-            @Parameter(name = "orderId", schema = @Schema(
+            @Parameter(name = "customerId", schema = @Schema(
                     implementation = String.class,
                     example = "888888"
             )),
-            @Parameter(name = "orderId", schema = @Schema(
+            @Parameter(name = "terminalIds", schema = @Schema(
                     implementation = List.class,
                     example = "[ \"12345\", \"993223\" ]"
             ))
 
+    })
+    @Operation(summary = "Create order.", description = "Create a new order.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",description = "Order created successfully", content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(ref = "#/components/schemas/OrderTerminal"),
+                    examples = @ExampleObject(
+                            name = "Success response",
+                            value = "{"+
+                                    "\"orderId\": \"123456\","+
+                                    "\"price\" : \"200.00\","+
+                                    "\"orderTimestamp\": \"20230328T10:00:00.000Z\","+
+                                    "\"terminals\" : [ \"2222222\",\"333333\" ],"+
+                                    "\"customerId\" : \"12356\","+
+                                    "\"customerEmail\" : \"marie.curie@email.org\""+
+                                    "}"
+                    )
+            ))
     })
     public ResponseEntity<OrderTerminal> createOrder(
             @JsonProperty String customerId,
