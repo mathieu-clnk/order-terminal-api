@@ -42,16 +42,21 @@ public class OrderTerminalController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",description = "Get an order by its identifier", content = @Content(
                     mediaType = "application/json",
-                    schema = @Schema(ref = "#/components/schemas/OrderTerminal"),
+                    schema = @Schema(ref = "#/components/schemas/OrderTerminalResponse"),
                     examples = @ExampleObject(
                             name = "Success response",
                             value = "{"+
+                                    "\"status\" : \"success\","+
+                                    "\"errorMessage\" : \"\","+
+                                    "\"sensitiveMessage\" : \"\","+
+                                    "\"result\" : {"+
                                     "\"orderId\": \"123456\","+
                                     "\"price\" : \"200.00\","+
                                     "\"orderTimestamp\": \"20230328T10:00:00.000Z\","+
                                     "\"terminals\" : [ \"2222222\",\"333333\" ],"+
                                     "\"customerId\" : \"12356\","+
                                     "\"customerEmail\" : \"marie.curie@email.org\""+
+                                    "}"+
                                     "}"
                     )
             ))
