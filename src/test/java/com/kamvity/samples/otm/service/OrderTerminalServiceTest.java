@@ -95,7 +95,7 @@ public class OrderTerminalServiceTest {
     @Test
     @Sql("/new-order-terminal.sql")
     public void getOrderById() {
-        OrderTerminal orderTerminal = orderTerminalService.getOrderTerminalBy(Long.decode("123456")).getBody();
+        OrderTerminal orderTerminal = orderTerminalService.getOrderTerminalBy(Long.decode("123456")).getBody().getResult();
         assertEquals(Long.decode("123456"),orderTerminal.getCustomerId());
     }
 }

@@ -2,6 +2,7 @@ package com.kamvity.samples.otm.controller;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kamvity.samples.otm.entity.OrderTerminal;
+import com.kamvity.samples.otm.response.OrderTerminalResponse;
 import com.kamvity.samples.otm.service.OrderTerminalService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -55,7 +56,7 @@ public class OrderTerminalController {
                     )
             ))
     })
-    public ResponseEntity<OrderTerminal> getOrderTerminalBy(
+    public ResponseEntity<OrderTerminalResponse> getOrderTerminalBy(
             @Parameter(name = "orderId",schema = @Schema(
                     implementation = String.class,
                     example = "888888"

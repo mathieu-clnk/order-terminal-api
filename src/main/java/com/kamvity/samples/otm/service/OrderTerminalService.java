@@ -4,6 +4,7 @@ import com.kamvity.samples.cm.entity.Customer;
 import com.kamvity.samples.otm.entity.OrderTerminal;
 import com.kamvity.samples.otm.entity.Terminal;
 import com.kamvity.samples.otm.repository.OrderTerminalRepository;
+import com.kamvity.samples.otm.response.OrderTerminalResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderTerminalService {
@@ -28,8 +30,20 @@ public class OrderTerminalService {
     private TerminalService terminalService;
 
     @Transactional
-    public ResponseEntity<OrderTerminal> getOrderTerminalBy(Long orderId) {
-        return ResponseEntity.status(HttpStatus.OK).body(orderTerminalRegistry.findById(orderId).get());
+    public ResponseEntity<OrderTerminalResponse> getOrderTerminalBy(Long orderId) {
+        Optional<OrderTerminal> order = orderTerminalRegistry.findById(orderId);
+        OrderTerminalResponse orderTerminalResponse = new OrderTerminalResponse();
+        order.ifPresentOrElse(
+                (entity) -> {
+                    orderTerminalResponse.setStatus(orderTerminalResponse.SUCCESS);
+                    orderTerminalResponse.setResult(entity);
+                },
+                () -> {
+                    orderTerminalResponse.setStatus(orderTerminalResponse.FAILED);
+                    orderTerminalResponse.setErrorMessage("OrderTerminal not found.");
+                }
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(orderTerminalResponse);
     }
 
     public ResponseEntity<OrderTerminal> createOrder(String customerId,String[] terminalIds) {

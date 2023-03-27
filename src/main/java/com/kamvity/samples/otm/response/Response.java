@@ -6,6 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Schema(name = "Response", description = "Generic response")
 public abstract class Response {
 
     @Schema(name = "SUCCESS",requiredMode = Schema.RequiredMode.NOT_REQUIRED)
