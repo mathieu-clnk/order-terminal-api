@@ -2,6 +2,7 @@ package com.kamvity.samples.otm.controller;
 
 import com.kamvity.samples.otm.config.OrderTerminalConfig;
 import com.kamvity.samples.otm.entity.OrderTerminal;
+import com.kamvity.samples.otm.response.OrderTerminalResponse;
 import com.kamvity.samples.otm.service.CustomerService;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -42,7 +43,7 @@ public class OrderTerminalControllerTest {
     @Sql("/new-order-terminal.sql")
     public void testGetOrderId() {
         String url = "http://localhost:" + port+"/v1/order-terminal/get-by-id?orderId=123456";
-        OrderTerminal orderTerminal = restTemplate.getForObject(url,OrderTerminal.class);
-        assertEquals(Double.valueOf("200.00"),orderTerminal.getPrice());
+        OrderTerminalResponse orderTerminal = restTemplate.getForObject(url,OrderTerminalResponse.class);
+        assertEquals(Double.valueOf("200.00"),orderTerminal.getResult().getPrice());
     }
 }
