@@ -39,6 +39,7 @@ public class OrderTerminalController {
      */
     @GetMapping("/get-by-id")
     @Operation(summary = "Get order by id.", description = "Get an order of terminals by its identifier.")
+    /*
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",description = "Get an order by its identifier", content = @Content(
                     mediaType = "application/json",
@@ -61,6 +62,8 @@ public class OrderTerminalController {
                     )
             ))
     })
+
+     */
     public ResponseEntity<OrderTerminalResponse> getOrderTerminalBy(
             @Parameter(name = "orderId",schema = @Schema(
                     implementation = String.class,
